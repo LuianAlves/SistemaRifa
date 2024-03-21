@@ -17,14 +17,12 @@ class ClienteFactory extends Factory
      */
     public function definition(): array
     {
-        $faker = \Faker\Factory::create('pt_BR');
-
         return [
             'user_id' => User::all()->random()->id,
-            'nome' => $faker->name,
-            'cpf' => $faker->cpf,
-            'email' => $faker->safeEmail,
-            'telefone' => '11 ' . $faker->cellPhone,
+            'nome' => fake()->name,
+            'cpf' => fake()->cpf,
+            'email' => fake()->safeEmail,
+            'telefone' => '11 ' . fake()->cellPhone,
         ];
     }
 }

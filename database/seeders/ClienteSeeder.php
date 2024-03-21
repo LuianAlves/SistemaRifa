@@ -14,17 +14,15 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = \Faker\Factory::create('pt_BR');
-
         $users = User::factory(50)->create();
 
-        $users->each(function (User $user) use ($faker) {
+        $users->each(function (User $user) {
             Cliente::factory()->create([
                 'user_id' => $user->id,
-                'nome' => $faker->name,
-                'cpf' => $faker->cpf,
-                'email' => $faker->safeEmail,
-                'telefone' => '(11) ' . $faker->cellPhone,
+                'nome' => fake()->name,
+                'cpf' => fake()->cpf,
+                'email' => fake()->safeEmail,
+                'telefone' => '(11) ' . fake()->cellPhone,
             ]);
         });
     }
