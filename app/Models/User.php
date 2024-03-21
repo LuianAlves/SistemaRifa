@@ -3,12 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\PanelTypeEnum;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
+
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,5 +46,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'panel' => PanelTypeEnum::class,
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if($this->panel === PanelTypeEnum::ADMIN) {
+            return true;
+        }
+
+        if($this->panel === PanelTypeEnum::APP) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(Cliente::class);
+    }
 }
