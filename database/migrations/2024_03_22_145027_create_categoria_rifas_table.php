@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('categoria_rifas', function (Blueprint $table) {
             $table->id();
+
+            $table->string('categoria_rifa');
+
             $table->timestamps();
         });
     }
