@@ -15,7 +15,7 @@ class ClienteObserver
 {
     public function created(Cliente $cliente): void
     {
-        $password = Str::random(8);
+        $password = Str::password(8);
 
         $user = User::create([
             'name' => $cliente->name,
