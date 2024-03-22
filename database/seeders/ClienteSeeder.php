@@ -14,16 +14,10 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::factory(50)->create();
-
-        $users->each(function (User $user) {
-            Cliente::factory()->create([
-                'user_id' => $user->id,
-                'nome' => fake()->name,
-                'cpf' => fake()->cpf,
-                'email' => fake()->safeEmail,
-                'telefone' => '(11) ' . fake()->cellPhone,
-            ]);
-        });
+        Cliente::factory(3)->create([
+            'name' => fake()->name,
+            'cpf' => fake()->cpf,
+            'telefone' => '(11) ' . fake()->cellPhone,
+        ]);
     }
 }

@@ -16,10 +16,11 @@ return new class extends Migration
 
             $table->foreignId('user_id')
                 ->index()
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->index()->unique();
             $table->string('telefone');
             $table->string('cpf');

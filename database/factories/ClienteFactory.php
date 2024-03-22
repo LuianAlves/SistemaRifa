@@ -18,11 +18,11 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::all()->random()->id,
-            'nome' => fake()->name,
+            'user_id' => User::factory()->create(),
+            'name' => fake()->name,
             'cpf' => fake()->cpf,
             'email' => fake()->safeEmail,
-            'telefone' => '11 ' . fake()->cellPhone,
+            'telefone' => '(11) ' . fake()->cellPhone,
         ];
     }
 }
