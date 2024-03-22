@@ -9,7 +9,7 @@
 <body>
     <div class="">
         <h1>Dados de Acesso</h1>
-        <p><strong>Link: </strong> <a href="{{route("filament.app.auth.login")}}"></a></p>
+        <p><strong>Link: </strong> <a href="{{route("filament.app.auth.login")}}">{{route("filament.app.auth.login")}}</a></p>
         <p><strong>Usuário: </strong> {{ $cliente->email }}</p>
         <p><strong>Senha: </strong> {{ $password }}</p>
     </div>
