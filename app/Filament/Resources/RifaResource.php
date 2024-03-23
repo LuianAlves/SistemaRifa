@@ -5,12 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\RifaStatusTypeEnum;
 use App\Filament\Resources\RifaResource\Pages;
 use App\Filament\Resources\RifaResource\RelationManagers;
-use App\Models\CategoriaRifa;
 use App\Models\Rifa;
-use Filament\Actions\ActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -82,65 +77,71 @@ class RifaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('categoria_rifa.categoria_rifa')
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('titulo')
                     ->label('Nome')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->alignCenter(),
 
                 Tables\Columns\ImageColumn::make('imagem')
                     ->circular(),
 
                 Tables\Columns\TextColumn::make('valor')
                     ->numeric()
-                    ->sortable(),
+                    ->money('BRL')
+                    ->sortable()
+                    ->alignCenter(),
 
                 Tables\Columns\TextColumn::make('limite_numeros')
                     ->numeric()
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
 
                 Tables\Columns\TextColumn::make('data_inicio')
                     ->date()
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('data_previsao_sorteio')
                     ->date()
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('status')
                     ->sortable()
                     ->badge()
-                    ->color(fn (RifaStatusTypeEnum $state): string => match ($state) {
+                    ->color(fn(RifaStatusTypeEnum $state): string => match ($state) {
                         RifaStatusTypeEnum::ABERTO => 'success',
                         RifaStatusTypeEnum::ANDAMENTO => 'warning',
                         RifaStatusTypeEnum::FINALIZADO => 'danger',
                     })
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                ActionGroup::make([
-                    ViewAction::make(),
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ]),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
