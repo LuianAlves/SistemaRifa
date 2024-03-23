@@ -12,7 +12,7 @@ class Rifa extends Model
 {
     use HasFactory;
 
-    public function categoriaRifa (): BelongsTo
+    public function categoriaRifa(): BelongsTo
     {
         return $this->belongsTo(CategoriaRifa::class);
     }

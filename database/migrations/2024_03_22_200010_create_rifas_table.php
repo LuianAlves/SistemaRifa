@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('titulo');
 
-            $table->integer('status');
+            $table->integer('status')->default(0);
 
             $table->text('imagem');
 

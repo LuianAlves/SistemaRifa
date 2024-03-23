@@ -6,15 +6,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CategoriaRifa extends Model
 {
     use HasFactory;
 
-    public function rifa (): HasOne
+    public function rifa(): HasMany
     {
-        return $this->hasOne(Rifa::class);
+        return $this->hasMany(Rifa::class);
     }
 }

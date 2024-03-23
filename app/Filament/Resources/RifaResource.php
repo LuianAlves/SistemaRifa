@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\RifaResource\Pages;
 use App\Filament\Resources\RifaResource\RelationManagers;
 use App\Models\Rifa;
+use App\Models\CategoriaRifa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,30 +26,37 @@ class RifaResource extends Resource
             ->schema([
                 Forms\Components\Select::make('categoria_rifa_id')
                     ->label('Categoria de Rifa')
-                    ->searchable()
-                    ->relationship('categoria_rifa')
+                    ->options(function () {
+                        return CategoriaRifa::pluck('categoria_rifa', 'id');
+                    })
                     ->required(),
 
                 Forms\Components\TextInput::make('titulo')
                     ->required()
                     ->maxLength(191),
+
+                Forms\Components\FileUpload::make('imagem')
+                    ->image()
+                    ->imageEditor()
+                    ->required(),
+
                 Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('imagem')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+                    ->default(0),
+
                 Forms\Components\TextInput::make('valor')
                     ->required()
                     ->numeric(),
+
                 Forms\Components\Textarea::make('descricao')
                     ->maxLength(65535)
                     ->columnSpanFull(),
+
                 Forms\Components\DatePicker::make('data_inicio')
                     ->required(),
+
                 Forms\Components\DatePicker::make('data_previsao_sorteio')
                     ->required(),
+
                 Forms\Components\TextInput::make('limite_numeros')
                     ->required()
                     ->numeric(),
@@ -59,30 +67,46 @@ class RifaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('categoria_rifa_id')
+                Tables\Columns\TextColumn::make('categoria_rifa.categoria_rifa')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('titulo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\ImageColumn::make('imagem')
+                    ->circular(),
+
                 Tables\Columns\TextColumn::make('status')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('valor')
                     ->numeric()
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('data_inicio')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('data_previsao_sorteio')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('limite_numeros')
                     ->numeric()
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
