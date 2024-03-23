@@ -16,16 +16,17 @@ return new class extends Migration
 
             $table->foreignId('categoria_rifa_id')
                 ->index()
-                ->constrained()
+                ->constrained('categoria_rifas')
                 ->cascadeOnDelete();
 
             $table->string('titulo');
 
-            $table->integer('status')->default(0);
+            $table->unsignedInteger('status')->default(0);
 
-            $table->text('imagem');
+            $table->text('imagem')->nullable();
 
-            $table->decimal('valor', 10, 2);
+            $table->float('valor', 10);
+
             $table->text('descricao')->nullable();
 
             $table->date('data_inicio');
