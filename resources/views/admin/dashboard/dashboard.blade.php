@@ -12,6 +12,7 @@
     <h1>hello</h1>
 
     <h2>Hello World!!!</h2>
+    <h3>teste</h3>
 
     <script src= "dashboard/js/script.js"> </script>
 </body>
