@@ -2,17 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\RifaStatusTypeEnum;
 use App\Filament\Resources\RifaResource\Pages;
 use App\Filament\Resources\RifaResource\RelationManagers;
-use App\Models\Rifa;
 use App\Models\CategoriaRifa;
+use App\Models\Rifa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RifaResource extends Resource
 {
@@ -24,24 +23,34 @@ class RifaResource extends Resource
     {
         return $form
             ->schema([
+//                Forms\Components\Select::make('categoria_rifa_id')
+//                    ->label('Categoria de Rifa')
+//                    ->options(function () {
+//                        return CategoriaRifa::pluck('categoria_rifa', 'id');
+//                    })
+//                    ->required(),
+
                 Forms\Components\Select::make('categoria_rifa_id')
                     ->label('Categoria de Rifa')
-                    ->options(function () {
-                        return CategoriaRifa::pluck('categoria_rifa', 'id');
-                    })
+                    ->relationship('categoriaRifa', 'categoria_rifa')
                     ->required(),
 
                 Forms\Components\TextInput::make('titulo')
+                    ->label('Nome')
                     ->required()
                     ->maxLength(191),
 
                 Forms\Components\FileUpload::make('imagem')
+                    ->label('Foto da Rifa')
                     ->image()
-                    ->imageEditor()
-                    ->required(),
+                    ->openable() // Abrir imagem
+                    ->downloadable() // Baixar imagem
+                    ->directory('imagens_rifa'),
 
                 Forms\Components\TextInput::make('status')
-                    ->default(0),
+                    ->label('Status da Rifa')
+                    ->default('aberto')
+                    ->disabled(),
 
                 Forms\Components\TextInput::make('valor')
                     ->required()
@@ -68,25 +77,26 @@ class RifaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('categoria_rifa.categoria_rifa')
-                    ->numeric()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('titulo')
+                    ->label('Nome')
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\ImageColumn::make('imagem')
                     ->circular(),
 
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('valor')
+                    ->numeric()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('limite_numeros')
                     ->numeric()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                Tables\Columns\TextColumn::make('valor')
-                    ->numeric()
-                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('data_inicio')
                     ->date()
@@ -98,9 +108,15 @@ class RifaResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                Tables\Columns\TextColumn::make('limite_numeros')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->sortable()
+                    ->badge()
+                    ->color(fn (RifaStatusTypeEnum $state): string => match ($state) {
+                        RifaStatusTypeEnum::ABERTO => 'success',
+                        RifaStatusTypeEnum::ANDAMENTO => 'warning',
+                        RifaStatusTypeEnum::FINALIZADO => 'danger',
+                    })
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

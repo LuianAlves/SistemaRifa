@@ -17,3 +17,6 @@ class CategoriaRifa extends Model
         return $this->hasMany(Rifa::class);
     }
 }
+
+
+// uma rifa pertence a uma categoria

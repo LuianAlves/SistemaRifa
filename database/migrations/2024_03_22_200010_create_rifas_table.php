@@ -21,18 +21,18 @@ return new class extends Migration
 
             $table->string('titulo');
 
-            $table->unsignedInteger('status')->default(0);
+            $table->string('status')->default('aberto');
 
-            $table->text('imagem')->nullable();
+            $table->string('imagem')->nullable();
 
-            $table->float('valor', 10);
+            $table->float('valor', 10, 2);
 
             $table->text('descricao')->nullable();
 
             $table->date('data_inicio');
             $table->date('data_previsao_sorteio');
 
-            $table->integer('limite_numeros');
+            $table->unsignedInteger('limite_numeros');
 
             $table->timestamps();
         });
