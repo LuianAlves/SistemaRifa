@@ -7,6 +7,10 @@ use App\Filament\Resources\RifaResource\Pages;
 use App\Filament\Resources\RifaResource\RelationManagers;
 use App\Models\CategoriaRifa;
 use App\Models\Rifa;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -132,7 +136,11 @@ class RifaResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

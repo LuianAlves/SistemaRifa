@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="dashboard/css/style.css">
-    
+
 </head>
 <body>
     <h1>hello</h1>
+
+    <h2>Hello World!!!</h2>
 
     <script src= "dashboard/js/script.js"> </script>
 </body>
