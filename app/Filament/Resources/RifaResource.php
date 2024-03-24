@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\QueryBuilder\Constraints\SelectConstraint;
 use Filament\Tables\Table;
 
 class RifaResource extends Resource
@@ -21,6 +22,8 @@ class RifaResource extends Resource
     protected static ?string $navigationGroup = "RIFAS";
 
     protected static ?string $slug = "rifa";
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
