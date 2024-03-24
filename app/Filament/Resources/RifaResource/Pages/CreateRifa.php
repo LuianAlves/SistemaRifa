@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateRifa extends CreateRecord
 {
     protected static string $resource = RifaResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -18,6 +18,10 @@ class RifaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = "RIFAS";
+
+    protected static ?string $slug = "rifa";
+
     public static function form(Form $form): Form
     {
         return $form

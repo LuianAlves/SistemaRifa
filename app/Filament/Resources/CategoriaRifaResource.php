@@ -17,6 +17,12 @@ class CategoriaRifaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $modelLabel = "Categoria";
+    protected static ?string $navigationGroup = "RIFAS";
+
+    protected static ?string $slug = "categoria-de-rifa";
+
+
     public static function form(Form $form): Form
     {
         return $form

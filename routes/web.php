@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('app.index');
 })->name('frontend.home');
 
-
-Route::fallback(function () {
-     return redirect('/app');
-});
+//
+//Route::fallback(function () {
+//     return redirect('/app/login');
+//});
