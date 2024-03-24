@@ -160,10 +160,10 @@ a:hover {
 
 /*------/ Bg Image /------*/
 .bg-image {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center center;
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
 }
 
 /*------/ List a /------*/
@@ -311,7 +311,7 @@ a:hover {
 
 /*------/ Title /------*/
 .title-wrap {
-    padding-bottom: 4rem;
+    padding-bottom: 1rem;
 }
 
 .title-a {
@@ -953,9 +953,10 @@ a:hover {
 # Hero Section
 --------------------------------------------------------------*/
 .intro {
-    height: 100vh;
+    height: 40vh;
     position: relative;
     color: #ffffff;
+    border-radius: 14px !important;
 }
 
 .intro .swiper-pagination {
@@ -982,7 +983,7 @@ a:hover {
 
 .intro .carousel-item-a {
     position: relative;
-    height: 100vh;
+    height: 40vh;
 }
 
 .intro .carousel-item-a.bg-image {
