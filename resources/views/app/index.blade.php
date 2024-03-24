@@ -141,7 +141,7 @@
                                             <div class="price-box d-flex">
                                                 <span class="price-a mt-2">{{ $rifa->status === 0 ? "Disponível" : "Finalizada" }} | R$ {{$rifa->valor}}</span>
                                             </div>
-                                            <a href="#" class="btn btn-b-n my-3">PARTICIPAR</a>
+                                            <a href="{{route('filament.app.resources.escolher-rifas.index')}}" class="btn btn-b-n my-3">PARTICIPAR</a>
                                         </div>
                                         <div class="card-footer-a">
                                             <ul class="card-info d-flex justify-content-around text-center">
