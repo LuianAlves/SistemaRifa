@@ -32,7 +32,7 @@
             </ul>
         </div>
 
-        <a href="{{route('filament.app.auth.login')}}" class="btn btn-b-n" >
+        <a href="{{url('/app/login')}}" class="btn btn-b-n" >
             Login
         </a>
 
