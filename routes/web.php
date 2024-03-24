@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('app.home');
+    return view('app.index');
 })->name('frontend.home');
 
 

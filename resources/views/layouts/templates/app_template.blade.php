@@ -3,13 +3,13 @@
 
 <head>
     <!-- Head -->
-    @include('layouts.common.home.home_head')
+    @include('layouts.common.app.head')
 </head>
 
 <body>
 
 <!-- Header/Navbar -->
-@include('layouts.common.home.home_navbar')
+@include('layouts.common.app.navbar')
 
 <!-- Banner Sliders -->
 <div class="intro intro-carousel swiper position-relative">
@@ -102,14 +102,14 @@
 </main>
 
 <!-- Footer -->
-@include('layouts.common.home.home_footer')
+@include('layouts.common.app.footer')
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Scripts -->
-@include('layouts.scripts.home_scripts')
+@include('layouts.scripts.app_scripts')
 
 </body>
 
